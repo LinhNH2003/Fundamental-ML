@@ -91,6 +91,9 @@ This project is designed to be completed in the following steps:
 - Hình ảnh khi trực quan dữ liệu về 2 chiều:
 ![background](./materials/pca.png)
 **Nhận xét**: Từ hình ảnh trên có thể thấy chúng ta không thể trực quan dữ liệu trên không gian hai chiều(n_componets = 2) vì không mang lại ý nghĩa nào về mặt trực quan đối với bộ dữ liệu.
+
+#### **Câu hỏi 2:How to determine the optimal number of principal components using pca.explained_variance_? Explain your selection process.
+
 ### Model 
 
 
