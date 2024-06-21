@@ -89,7 +89,7 @@ This project is designed to be completed in the following steps:
 
 #### **Câu hỏi 1: Can you visualize the data projected onto two principal components?**
 - Hình ảnh khi trực quan dữ liệu về 2 chiều:
-![background](./materials/.jpg)
+![background](./materials/pca.jpg)
 **Nhận xét**: Từ hình ảnh trên có thể thấy chúng ta không thể trực quan dữ liệu trên không gian hai chiều(n_componets = 2) vì không mang lại ý nghĩa nào về mặt trực quan đối với bộ dữ liệu.
 ### Model 
 
