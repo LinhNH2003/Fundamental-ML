@@ -188,7 +188,92 @@ Quá trình này tiếp tục cho đến khi số bước \( M \) được hoàn
 **Cross Validation:**
 * Hỗ trợ k-fold cross validation tích hợp để đánh giá mô hình và chọn siêu tham số tối ưu.
 ##### c) Model Logistic Regreesion
+![background](./materials/LGT.png)
+**Logistic Regression** là một trong những thuật toán quan trọng trong học máy, đặc biệt là trong bài toán phân loại. Thuật toán này được sử dụng để dự đoán xác suất của một biến phụ thuộc nhị phân dựa trên các biến độc lập.
+
+**Đặc điểm chính của Logistic Regression**:
+- **Loại thuật toán**: Thuật toán học có giám sát (supervised learning).
+- **Loại bài toán**: Phân loại nhị phân (binary classification).
+- **Đầu ra**: Dự đoán xác suất rơi vào một trong hai lớp (0 hoặc 1).
+- **Hàm kích hoạt**: Sigmoid function, đưa đầu ra về một giá trị trong khoảng (0, 1)
+
+**Công thức chính của Logistic Regression:**
+Công thức dự đoán của Logistic Regression cho một điểm dữ liệu x là:
+
+$$\hat{p} = \sigma(\mathbf{w}^T \mathbf{x} + b)$$
+
+Trong đó:
+$\hat p$: là xác suất dự đoán.
+**$σ$** là hàm sigmoid function: $ \sigma(z) = \frac{1}{1 + e^{-z}} $
+
+**$w$** là vector trọng số.
+
+**$x$** là vector đặc trưng của dữ liệu.
+
+**$b$** là hệ số chặn (bias).
 ##### d) Model SVM
+![background](./materials/svm.png)
+Thuật toán SVM (Support Vector Machine) thực hiện phân lớp dựa trên các nguyên lý toán học nhằm tìm ra siêu phẳng tối ưu để phân chia các điểm dữ liệu của hai lớp. Các bước thực hiện thuật toán SVM:
+- **Bước 1: Chuẩn bị dữ liệu**
+
+Cho một tập dữ liệu huấn luyện $(x_i, y_i)$ với $i = 1, \ldots, n$, trong đó $x_i \in \mathbb{R}^d$ là điểm dữ liệu và $y_i \in \{-1, 1\}$ là nhãn lớp.
+
+- **Bước 2: Thiết lập hàm quyết định**
+
+Siêu phẳng có thể được biểu diễn bởi phương trình:
+\[ $w\cdot x + b = 0$ \]
+trong đó $w$ là vector trọng số và $b$ là hằng số bias.
+
+- **Bước 3: Ràng buộc phân lớp**
+
+Để dữ liệu được phân lớp chính xác, cần thoả mãn:
+\[ $y_i (w \cdot x_i + b) \geq 1 \$]
+Điều này đảm bảo rằng các điểm thuộc lớp +1 nằm một phía của siêu phẳng và các điểm thuộc lớp -1 nằm phía bên kia.
+
+- **Bước 4: Hàm mục tiêu**
+
+Mục tiêu là tối đa hóa khoảng cách giữa các điểm dữ liệu và siêu phẳng. Điều này tương đương với việc tối thiểu hóa:
+\[ $\frac{1}{2} \| w \|^2 $\]
+dưới các ràng buộc:
+\[ $y_i (w \cdot x_i + b) \geq 1$ \]
+
+- **Bước 5: Bài toán tối ưu hóa**
+
+Đây là bài toán tối ưu hóa bậc hai với các ràng buộc tuyến tính, có thể được viết lại dưới dạng:
+\[ $\min_{w,b} \frac{1}{2} \| w \|^2 $\]
+\[ $\text{subject to } y_i (w \cdot x_i + b) \geq 1, \; i = 1, \ldots, n$ \]
+
+- **Bước 6: Sử dụng phương pháp Lagrange**
+
+Để giải bài toán này, ta sử dụng phương pháp nhân tử Lagrange:
+\[ $L(w, b, \alpha) = \frac{1}{2} \| w \|^2 - \sum_{i=1}^n \alpha_i [y_i (w \cdot x_i + b) - 1]$ \]
+trong đó $\alpha_i \geq 0$ là các nhân tử Lagrange.
+
+- **Bước 7: Tìm nghiệm tối ưu**
+
+Để tìm nghiệm của $L(w, b, \alpha)$, ta cần tối thiểu hóa $L$ theo $w$ và $b$ và tối đa hóa theo $\alpha$. Điều này dẫn đến hệ phương trình:
+\[ $\frac{\partial L}{\partial w} = 0 \Rightarrow w = \sum_{i=1}^n \alpha_i y_i x_i$ \]
+\[ $\frac{\partial L}{\partial b} = 0 \Rightarrow \sum_{i=1}^n \alpha_i y_i = 0 $\]
+
+- **Bước 8: Dual Problem**
+
+Bằng cách thay thế $w$ và $b$ vào $L$, ta có bài toán tối ưu kép:
+\[ $\max_{\alpha} \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i,j=1}^n \alpha_i \alpha_j y_i y_j (x_i \cdot x_j) $\]
+\[ $\text{subject to } \sum_{i=1}^n \alpha_i y_i = 0$ \]
+\[ $\alpha_i \geq 0, \; i = 1, \ldots, n$ \]
+
+- **Bước 9: Kernel Trick (Nếu cần)**
+
+Nếu dữ liệu không tuyến tính, ta có thể sử dụng kernel trick để chuyển dữ liệu vào không gian đặc trưng cao hơn:
+\[$ K(x_i, x_j) = \phi(x_i) \cdot \phi(x_j) $\]
+trong đó $\phi$ là hàm ánh xạ vào không gian đặc trưng.
+
+- **Bước 10: Xác định siêu phẳng và hàm quyết định**
+Sau khi giải quyết được bài toán tối ưu, vector trọng số $w$ và hằng số bias $b$ có thể được sử dụng để xác định hàm quyết định:
+\[ $f(x) = w \cdot x + b$ \]
+Dự đoán lớp của điểm dữ liệu mới $x$ dựa trên dấu của $f(x)$:
+\[ $\text{class}(x) = \text{sign}(f(x)) $\]
+
 ##### e) Model Multi-layer Perceptron classifier
 
 
