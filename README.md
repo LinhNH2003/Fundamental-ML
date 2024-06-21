@@ -317,10 +317,13 @@ Nếu không có hàm kích hoạt thì trọng số liên kết và bias chỉ 
 như 1 hàm biến đổi tuyến tính. Giải 1 hàm tuyến tính sẽ đơn giản hơn
 nhiều nhưng sẽ khó có thể mô hình hóa và giải được những vấn đề
 phức tạp.
-- Model với dữ liệu gốc:
-- Model với dữ liệu PCA
-- Model với dữ liệu inverse
-
+- Model với dữ liệu gốc:\
+  Best parameters found:  {'alpha': 0.0001, 'hidden_layer_sizes': (1024, 512, 256, 128), 'learning_rate_init': 0.001}.\
+  Test accuracy: 0.4653106714962385
+- Model với dữ liệu PCA:\
+  Test accuracy: 0.43981610476455835
+- Model với dữ liệu inverse:\
+  Test accuracy: 0.4580663137364168
 
 
 
