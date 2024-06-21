@@ -53,7 +53,7 @@ df = pd.read_csv('/content/icml_face_data.csv')
 df.info()
 ````
 - Kết quả thu được từ data: tập dữ liệu bao gồm 35,887 dòng và 2 cột: emotion và pixels. Cột emotion chứa các giá trị số nguyên đại diện cho các loại cảm xúc, và cột pixels chứa các chuỗi ký tự đại diện cho các giá trị pixel của hình ảnh.
-- 
+
 
 
 
