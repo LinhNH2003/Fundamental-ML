@@ -57,7 +57,7 @@ This project is designed to be completed in the following steps:
 - **EDA dữ liệu ban đầu:**
 
   - Nhận xét về phân phối nhãn dữ liệu
-    ![background](./materials/phanphoidulieu)
+    ![background](./materials/phanphoidulieu.png)
     1. **Train Labels**: ta nhận thấy sự mất cân bằng rõ rệt:
         - Nhãn "Happy" xuất hiện nhiều nhất (~8000).
         - Nhãn "Disgust" xuất hiện ít nhất (gần 0).
