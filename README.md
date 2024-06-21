@@ -187,6 +187,15 @@ Quá trình này tiếp tục cho đến khi số bước \( M \) được hoàn
 
 **Cross Validation:**
 * Hỗ trợ k-fold cross validation tích hợp để đánh giá mô hình và chọn siêu tham số tối ưu.
+- Model với dữ liệu gốc:
+  Best parameters found:  {'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 700}
+  Accuracy of the best XGBoosing model: 0.5050153246029535
+- Model với dữ liệu PCA
+  Best parameters found:  {'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 700}
+  Accuracy of the best XGBoosing model: 0.4555586514349401
+- Model với dữ liệu inverse
+  Best parameters found:  {'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 700}
+  Accuracy of the best XGBoosing model: 0.5032042351629981
 ##### c) Model Logistic Regreesion
 ![background](./materials/LGT.png)
 **Logistic Regression** là một trong những thuật toán quan trọng trong học máy, đặc biệt là trong bài toán phân loại. Thuật toán này được sử dụng để dự đoán xác suất của một biến phụ thuộc nhị phân dựa trên các biến độc lập.
@@ -273,7 +282,13 @@ Sau khi giải quyết được bài toán tối ưu, vector trọng số $w$ v�
 \[ $f(x) = w \cdot x + b$ \]
 Dự đoán lớp của điểm dữ liệu mới $x$ dựa trên dấu của $f(x)$:
 \[ $\text{class}(x) = \text{sign}(f(x)) $\]
-
+- Model với dữ liệu gốc:
+  Best parameters found:svm__C=10, svm__gamma=scale
+  Accuracy: 0.4754806352744497
+- Model với dữ liệu PCA
+  Accuracy: 0.4660072443577598
+- Model với dữ liệu inverse
+  Accuracy: 0.4831429367511842
 ##### e) Model Multi-layer Perceptron classifier
 ![background](./materials/mlp.png)
 Cấu trúc một neuron.
@@ -302,7 +317,9 @@ Nếu không có hàm kích hoạt thì trọng số liên kết và bias chỉ 
 như 1 hàm biến đổi tuyến tính. Giải 1 hàm tuyến tính sẽ đơn giản hơn
 nhiều nhưng sẽ khó có thể mô hình hóa và giải được những vấn đề
 phức tạp.
-
+- Model với dữ liệu gốc:
+- Model với dữ liệu PCA
+- Model với dữ liệu inverse
 
 
 
