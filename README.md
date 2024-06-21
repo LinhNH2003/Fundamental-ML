@@ -54,7 +54,20 @@ This project is designed to be completed in the following steps:
     Khi đó ta thấy rằng dữ liệu được cung cấp không có giá trị thiếu và có **1793** giá trị trùng lặp
     => cần drop giá trị trùng lặp
     
--**EDA dữ liệu ban đầu:**
+- **EDA dữ liệu ban đầu:**
+
+  - Nhận xét về phân phối nhãn dữ liệu
+    ![background](./materials/phanphoidulieu)
+    1. **Train Labels**: ta nhận thấy sự mất cân bằng rõ rệt:
+        - Nhãn "Happy" xuất hiện nhiều nhất (~8000).
+        - Nhãn "Disgust" xuất hiện ít nhất (gần 0).
+        - Nhãn "Fear", "Sad", và "Neutral" trung bình (~5000-7000).
+        - Nhãn "Angry" và "Surprise" thấp hơn.
+    2. **Random Labels** có phân phối đồng đều: mọi nhãn có tần suất xuất hiện tương đương (~5000).
+    3. **So sánh chung**
+        - **Train Labels**: Mất cân bằng giữa các nhãn.
+        - **Random Labels**: Phân phối đều đặn.
+    => **Kết luận**: Dữ liệu mất cân bằng trong tập huấn luyện bởi vì nhãn "Happy" quá phổ biến có thể gây thiên vị cho mô hình.
 
 
 
