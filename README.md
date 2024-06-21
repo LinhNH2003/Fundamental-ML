@@ -53,7 +53,11 @@ This project is designed to be completed in the following steps:
   - 1.1 Kiểm tra giá trị thiếu và dữ liệu trùng lặp.
     Khi đó ta thấy rằng dữ liệu được cung cấp không có giá trị thiếu và có **1793** giá trị trùng lặp
     => cần drop giá trị trùng lặp
+    
 -**EDA dữ liệu ban đầu:**
+
+
+
 
 
 
