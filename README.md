@@ -109,7 +109,7 @@ This project is designed to be completed in the following steps:
   ![background](./materials/ellow.png)
   **Nhận xét**: Từ hình ảnh có thể thấy component tối ưu được chọn là **104**. Điều này có nghĩa là 104 PCs đầu tiên giải thích được 90% phương sai của dữ liệu ban đầu.
 ### **III.Model**
-#### 1.1 Biến đổi dữ liệu trước khi apply model
+#### 1.1 Chuẩn bị dữ liệu trước khi apply model
 ##### a) **Chia tập dữ liệu thành train và test**
 - Đây là bước chia dữ liệu ban đầu thành hai phần riêng biệt để huấn luyện mô hình và đánh giá hiệu suất của nó. Tập huấn luyện được sử dụng để mô hình học từ dữ liệu, trong khi tập kiểm tra dùng để đánh giá mô hình sau khi huấn luyện.\
 - Với dữ liệu này tập train và test đã chia theo test_size=0.2 và random_state=42.
@@ -117,13 +117,29 @@ This project is designed to be completed in the following steps:
 
 ##### b) **Biến đổi dữ liệu**
 Sau khi chia dữ liệu, các giá trị dữ liệu thô được chuyển đổi thành định dạng phù hợp để sử dụng trong mô hình. Ví dụ, trong trường hợp này, dữ liệu pixel ban đầu được chuyển từ chuỗi thành các mảng số nguyên để mô hình có thể hiểu và xử lý.
+
+Xây dựng các model với 3 dạng dữ liệu được xử lý, gồm:
+- ###### **Dữ liệu train, test được lấy từ dữ liệu gốc:**
+```python
+# Tiền xử lý dữ liệu
+X = df['pixels'].apply(lambda x: [int(pixel) for pixel in x.split()])
+y = df['emotion']
+# Chia dữ liệu thành tập huấn luyện và tập kiểm tra
+X_train_Original, X_test_Original, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Chuyển đổi danh sách các danh sách thành mảng numpy
+X_train_Original = np.array([np.array(x) for x in X_train_Original])
+X_test_Original = np.array([np.array(x) for x in X_test_Original])
+```
+- ###### **Dữ liệu giảm chiều bằng PCA:**
 ```python
 from sklearn.decomposition import PCA
 # Chọn số thành phần chính sao cho giữ lại ít nhất 90% phương sai của dữ liệu gốc
 pca = PCA(n_components=104)
 ```
 Dữ liệu đã được biến đổi bằng PCA (X_test_pca) được sử dụng để đánh giá hiệu suất của mô hình máy học sau khi đã được huấn luyện trên dữ liệu đã giảm chiều (X_train_pca). Việc này giúp đảm bảo rằng mô hình đang được đánh giá trên các dữ liệu có cùng phân phối với dữ liệu huấn luyện, sau khi đã áp dụng phương pháp giảm chiều dữ liệu PCA.
-##### c) **Inverse data from pca**
+
+- ###### **Dữ liệu inverse từ PCA với ảnh được loại bỏ bớt những features không quan trọng:**
+
 Tiếp theo ta  sử dụng hàm inverse để phục hồi dữ liệu từ không gian giảm chiều (thông qua PCA) về không gian ban đầu. Nhằm để đánh giá:
 - Đánh giá lại chất lượng của việc giảm chiều dữ liệu.
 - Đối chiếu và so sánh các điểm dữ liệu giữa không gian ban đầu và không gian đã giảm chiều.
@@ -155,6 +171,8 @@ Quá trình huấn luyện bao gồm các bước sau:
    c. Cập nhật mô hình:\
       $F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x)$
 Quá trình này tiếp tục cho đến khi số bước \( M \) được hoàn thành hoặc mô hình đạt đến hiệu suất mong muốn.
+
+Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụng với:
 - Model với dữ liệu gốc:
     - Best parameters found:  **{'learning_rate': 0.25, 'max_features': 48, 'n_estimators': 200}**
     - Với Accuracy of the best Gradient Boosting model cao nhất là:  0.4098841472356651
@@ -220,68 +238,75 @@ $\hat p$: là xác suất dự đoán.
 **$x$** là vector đặc trưng của dữ liệu.
 
 **$b$** là hệ số chặn (bias).
+
+Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụng với:
+
+
 ##### d) Model SVM
-![background](./materials/svm.png)
+![background](./materials/svm.png) 
+
 Thuật toán SVM (Support Vector Machine) thực hiện phân lớp dựa trên các nguyên lý toán học nhằm tìm ra siêu phẳng tối ưu để phân chia các điểm dữ liệu của hai lớp. Các bước thực hiện thuật toán SVM:
-- **Bước 1: Chuẩn bị dữ liệu**
+- **Chuẩn bị dữ liệu**
 
 Cho một tập dữ liệu huấn luyện $(x_i, y_i)$ với $i = 1, \ldots, n$, trong đó $x_i \in \mathbb{R}^d$ là điểm dữ liệu và $y_i \in \{-1, 1\}$ là nhãn lớp.
 
-- **Bước 2: Thiết lập hàm quyết định**
+- **Thiết lập hàm quyết định**
 
 Siêu phẳng có thể được biểu diễn bởi phương trình:
 \[ $w\cdot x + b = 0$ \]
 trong đó $w$ là vector trọng số và $b$ là hằng số bias.
 
-- **Bước 3: Ràng buộc phân lớp**
+- **Ràng buộc phân lớp**
 
 Để dữ liệu được phân lớp chính xác, cần thoả mãn:
 \[ $y_i (w \cdot x_i + b) \geq 1 \$]
 Điều này đảm bảo rằng các điểm thuộc lớp +1 nằm một phía của siêu phẳng và các điểm thuộc lớp -1 nằm phía bên kia.
 
-- **Bước 4: Hàm mục tiêu**
+- **Hàm mục tiêu**
 
 Mục tiêu là tối đa hóa khoảng cách giữa các điểm dữ liệu và siêu phẳng. Điều này tương đương với việc tối thiểu hóa:
 \[ $\frac{1}{2} \| w \|^2 $\]
 dưới các ràng buộc:
 \[ $y_i (w \cdot x_i + b) \geq 1$ \]
 
-- **Bước 5: Bài toán tối ưu hóa**
+- **Bài toán tối ưu hóa**
 
 Đây là bài toán tối ưu hóa bậc hai với các ràng buộc tuyến tính, có thể được viết lại dưới dạng:
 \[ $\min_{w,b} \frac{1}{2} \| w \|^2 $\]
 \[ $\text{subject to } y_i (w \cdot x_i + b) \geq 1, \; i = 1, \ldots, n$ \]
 
-- **Bước 6: Sử dụng phương pháp Lagrange**
+- **Sử dụng phương pháp Lagrange**
 
 Để giải bài toán này, ta sử dụng phương pháp nhân tử Lagrange:
 \[ $L(w, b, \alpha) = \frac{1}{2} \| w \|^2 - \sum_{i=1}^n \alpha_i [y_i (w \cdot x_i + b) - 1]$ \]
 trong đó $\alpha_i \geq 0$ là các nhân tử Lagrange.
 
-- **Bước 7: Tìm nghiệm tối ưu**
+- **Tìm nghiệm tối ưu**
 
 Để tìm nghiệm của $L(w, b, \alpha)$, ta cần tối thiểu hóa $L$ theo $w$ và $b$ và tối đa hóa theo $\alpha$. Điều này dẫn đến hệ phương trình:
 \[ $\frac{\partial L}{\partial w} = 0 \Rightarrow w = \sum_{i=1}^n \alpha_i y_i x_i$ \]
 \[ $\frac{\partial L}{\partial b} = 0 \Rightarrow \sum_{i=1}^n \alpha_i y_i = 0 $\]
 
-- **Bước 8: Dual Problem**
+- **Dual Problem**
 
 Bằng cách thay thế $w$ và $b$ vào $L$, ta có bài toán tối ưu kép:
 \[ $\max_{\alpha} \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i,j=1}^n \alpha_i \alpha_j y_i y_j (x_i \cdot x_j) $\]
 \[ $\text{subject to } \sum_{i=1}^n \alpha_i y_i = 0$ \]
 \[ $\alpha_i \geq 0, \; i = 1, \ldots, n$ \]
 
-- **Bước 9: Kernel Trick (Nếu cần)**
+- **Kernel Trick (Nếu dữ liệu không tuyến tính)**
 
 Nếu dữ liệu không tuyến tính, ta có thể sử dụng kernel trick để chuyển dữ liệu vào không gian đặc trưng cao hơn:
 \[$ K(x_i, x_j) = \phi(x_i) \cdot \phi(x_j) $\]
 trong đó $\phi$ là hàm ánh xạ vào không gian đặc trưng.
 
-- **Bước 10: Xác định siêu phẳng và hàm quyết định**
+- **Xác định siêu phẳng và hàm quyết định**
 Sau khi giải quyết được bài toán tối ưu, vector trọng số $w$ và hằng số bias $b$ có thể được sử dụng để xác định hàm quyết định:
 \[ $f(x) = w \cdot x + b$ \]
 Dự đoán lớp của điểm dữ liệu mới $x$ dựa trên dấu của $f(x)$:
 \[ $\text{class}(x) = \text{sign}(f(x)) $\]
+
+Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụng với:
 - Model với dữ liệu gốc:
   Best parameters found:svm__C=10, svm__gamma=scale
   Accuracy: 0.4754806352744497
@@ -317,6 +342,8 @@ Nếu không có hàm kích hoạt thì trọng số liên kết và bias chỉ 
 như 1 hàm biến đổi tuyến tính. Giải 1 hàm tuyến tính sẽ đơn giản hơn
 nhiều nhưng sẽ khó có thể mô hình hóa và giải được những vấn đề
 phức tạp.
+
+Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụng với:
 - Model với dữ liệu gốc:\
   Best parameters found:  {'alpha': 0.0001, 'hidden_layer_sizes': (1024, 512, 256, 128), 'learning_rate_init': 0.001}.\
   Test accuracy: 0.4653106714962385
