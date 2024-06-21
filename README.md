@@ -61,7 +61,7 @@ This project is designed to be completed in the following steps:
    + Nhãn Sad:
       ![background](./materials/Sad.png)
    + Nhãn Surprise:
-      ![background](./materials/Surprise.png)
+      ![background](./materials/Surpise.png)
    + Nhãn Neutral:
      ![background](./materials/Neutral.png)
 **1.2 Thực hiện các xử lí ban đầu:**
