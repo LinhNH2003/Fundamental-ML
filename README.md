@@ -46,7 +46,7 @@ This project is designed to be completed in the following steps:
 - Tập dữ liệu được tổng hợp từ internet, được thiết kế để phân loại biểu hiện khuôn mặt. Dữ liệu bao gồm các hình ảnh thang độ xám của khuôn mặt, mỗi hình ảnh có kích thước 48x48 pixel. Các khuôn mặt đã được tự động căn chỉnh để gần như ở giữa và chiếm một khu vực tương tự trong mỗi hình ảnh.
 - Mục tiêu là sử dụng những thuật toán Machine Learning và Deep Learning để phân loại từng khuôn mặt dựa trên cảm xúc được thể hiện, gán nó vào một trong bảy loại cảm xúc (0=Tức giận, 1=Ghê tởm, 2=Sợ hãi, 3=Vui vẻ, 4=Buồn, 5=Bất ngờ, 6=Trung lập).
 ### 1. Prerequisite
-**1.1 Thông tin về dữ liệu:**
+#### **1.1 Thông tin về dữ liệu:**
 - Kết quả thu được từ data: tập dữ liệu bao gồm 35,887 dòng và 2 cột: emotion và pixels. Cột emotion chứa các giá trị số nguyên đại diện cho các loại cảm xúc, và cột pixels chứa các chuỗi ký tự đại diện cho các giá trị pixel của hình ảnh.
   ![background](./materials/view.png)
 - **Các nhãn dữ liệu:**
@@ -64,10 +64,10 @@ This project is designed to be completed in the following steps:
       ![background](./materials/Surpise.png)
    + Nhãn Neutral:
      ![background](./materials/Neutral.png)
-**1.2 Thực hiện các xử lí ban đầu:**
+#### **1.2 Thực hiện các xử lí ban đầu:**
 - Kiểm tra giá trị thiếu và dữ liệu trùng lặp
 - Khi đó ta thấy rằng dữ liệu được cung cấp không có giá trị thiếu và có **1793** giá trị trùng lặp => cần drop giá trị trùng lặp.
-**1.3 Trực quan dữ liệu ban đầu:**
+#### **1.3 Trực quan dữ liệu ban đầu:**
   - Tổng quan phần trăm các nhãn trong dữ liệu:
      ![background](./materials/PB_emotion.png) 
   - Nhận xét về phân phối nhãn dữ liệu
@@ -82,7 +82,8 @@ This project is designed to be completed in the following steps:
         - **Train Labels**: Mất cân bằng giữa các nhãn.
         - **Random Labels**: Phân phối đều đặn.
     => **Kết luận**: Dữ liệu mất cân bằng trong tập huấn luyện bởi vì nhãn "Happy" quá phổ biến có thể gây thiên vị cho mô hình.
-### 
+### Principal Components Analysis - PCA
+### Model 
 
 
 
