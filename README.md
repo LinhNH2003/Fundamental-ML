@@ -119,11 +119,77 @@ This project is designed to be completed in the following steps:
 Sau khi chia dữ liệu, các giá trị dữ liệu thô được chuyển đổi thành định dạng phù hợp để sử dụng trong mô hình. Ví dụ, trong trường hợp này, dữ liệu pixel ban đầu được chuyển từ chuỗi thành các mảng số nguyên để mô hình có thể hiểu và xử lý.
 ```python
 from sklearn.decomposition import PCA
-# Chọn số thành phần chính sao cho giữ lại ít nhất 95% phương sai của dữ liệu gốc
+# Chọn số thành phần chính sao cho giữ lại ít nhất 90% phương sai của dữ liệu gốc
 pca = PCA(n_components=104)
 ```
+Dữ liệu đã được biến đổi bằng PCA (X_test_pca) được sử dụng để đánh giá hiệu suất của mô hình máy học sau khi đã được huấn luyện trên dữ liệu đã giảm chiều (X_train_pca). Việc này giúp đảm bảo rằng mô hình đang được đánh giá trên các dữ liệu có cùng phân phối với dữ liệu huấn luyện, sau khi đã áp dụng phương pháp giảm chiều dữ liệu PCA.
 ##### c) **Inverse data from pca**
+Tiếp theo ta  sử dụng hàm inverse để phục hồi dữ liệu từ không gian giảm chiều (thông qua PCA) về không gian ban đầu. Nhằm để đánh giá:
+- Đánh giá lại chất lượng của việc giảm chiều dữ liệu.
+- Đối chiếu và so sánh các điểm dữ liệu giữa không gian ban đầu và không gian đã giảm chiều.
+- Sử dụng dữ liệu phục hồi để đảm bảo rằng mô hình hoạt động hiệu quả trên các điểm dữ liệu gốc, không chỉ trên các điểm đã giảm chiều
+```python
+X_train_restored = pca.inverse_transform(X_train_pca)
+X_test_restored = pca.inverse_transform(X_test_pca)
+```
 #### 1.2 Model 
+##### a) Model GradientBoostingClassifier
+ ![background](./materials/image.png)
+Gradient boosting sử dụng một quy trình lặp lại để cập nhật mô hình. Công thức tổng quát cho mô hình ở bước \( m \) là:\
+$$F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x)$$ 
+
+Trong đó:
+- $F_m(x)$là mô hình tại bước \( m \).
+- $F_{m-1}(x)$là mô hình tại bước trước đó.
+- $(\nu)$ là tốc độ học (learning rate), một hệ số giảm để điều chỉnh mức độ ảnh hưởng của mỗi cây.
+- $(h_m(x))$ là cây quyết định mới được huấn luyện để dự đoán phần dư (residuals) hoặc gradient của hàm mất mát tại bước \(m\).
+
+Quá trình huấn luyện bao gồm các bước sau:
+1. Khởi tạo mô hình với một giá trị không đổi:
+   $F_0(x) = \arg\min_\gamma \sum_{i=1}^{N} L(y_i,\gamma)$
+   Trong đó, $L$ là hàm mất mát và $(y_i)$ là nhãn thực tế.
+2. Với mỗi bước $(m = 1)$ đến $M$:\
+   a. Tính gradient của hàm mất mát:
+   $$g_im = [∂L(y_i, F(x_i)) / ∂F(x_i)]  tại  F(x) = F_{m-1}(x)$$
+   b. Huấn luyện cây quyết định $h_m(x)$ để dự đoán gradient $g_{im}$.\
+   c. Cập nhật mô hình:\
+      $F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x)$
+Quá trình này tiếp tục cho đến khi số bước \( M \) được hoàn thành hoặc mô hình đạt đến hiệu suất mong muốn.
+- Model với dữ liệu gốc:
+    - Best parameters found:  **{'learning_rate': 0.25, 'max_features': 48, 'n_estimators': 200}**
+    - Với Accuracy of the best Gradient Boosting model cao nhất là:  0.4098841472356651
+- Model với dữ liệu PCA
+    - Best parameters found:  **{'learning_rate': 0.1, 'max_features': 24, 'n_estimators': 200}**
+    - Accuracy of the best Gradient Boosting model: 0.37879454465464146
+- Model với dữ liệu inverse
+    - Best parameters found: **{'learning_rate': 0.25, 'max_features': 48, 'n_estimators': 200}**
+    - Accuracy of the best Gradient Boosting model: 0.39917876521484086
+##### b) Model XGBoost Classifier
+![background](./materials/xgb.png)
+Đặc điểm chính của XGBoost.
+
+**Tối ưu hóa tốc độ và hiệu suất:**
+* Tree Pruning: Sử dụng chiến lược cắt tỉa cây (pruning) để tránh overfitting, với kỹ thuật "maximum depth".
+* Parallel Processing: Hỗ trợ xử lý song song để tăng tốc độ huấn luyện.
+* Cache-aware Access: Tối ưu hóa truy cập bộ nhớ cache để tăng hiệu suất tính toán. \
+
+**Regularization (Điều chỉnh):** \
+* XGBoost thêm các thuật ngữ điều chỉnh vào hàm mất mát để tránh overfitting, cụ thể là L1 (lasso) và L2 (ridge) regularization.
+
+**Handling Missing Values:**
+* Tự động xử lý các giá trị thiếu (missing values) bằng cách học các con đường tối ưu trong cây quyết định.
+
+**Shrinkage (Learning Rate):**
+* Hỗ trợ giảm tốc độ học (learning rate), giúp làm chậm quá trình học và cải thiện khả năng tổng quát hóa của mô hình.
+
+**Early Stopping:**
+* XGBoost hỗ trợ dừng sớm khi mô hình không còn cải thiện trên tập kiểm tra, giúp tiết kiệm thời gian và tránh overfitting.
+
+**Cross Validation:**
+* Hỗ trợ k-fold cross validation tích hợp để đánh giá mô hình và chọn siêu tham số tối ưu.
+##### c) Model Logistic Regreesion
+##### d) Model SVM
+##### e) Model Multi-layer Perceptron classifier
 
 
 
