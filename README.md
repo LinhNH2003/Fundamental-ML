@@ -53,6 +53,14 @@ df = pd.read_csv('/content/icml_face_data.csv')
 df.info()
 ````
 - Kết quả thu được từ data: tập dữ liệu bao gồm 35,887 dòng và 2 cột: emotion và pixels. Cột emotion chứa các giá trị số nguyên đại diện cho các loại cảm xúc, và cột pixels chứa các chuỗi ký tự đại diện cho các giá trị pixel của hình ảnh.
+- Thực hiện các xử lí ban đầu:
+  - 1.1 Kiểm tra giá trị thiếu và dữ liệu trùng lặp.
+    ````python
+    df.isnull().sum()
+    df.duplicated().sum()
+    ````
+    Khi đó ta thấy rằng dữ liệu được cung cấp không có giá trị thiếu và có **1793** giá trị trùng lặp
+    => cần drop giá trị trùng lặp
 
 
 
