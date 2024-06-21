@@ -275,6 +275,33 @@ Dự đoán lớp của điểm dữ liệu mới $x$ dựa trên dấu của $f
 \[ $\text{class}(x) = \text{sign}(f(x)) $\]
 
 ##### e) Model Multi-layer Perceptron classifier
+![background](./materials/mlp.png)
+Cấu trúc một neuron.
+* Một neuron sẽ được một hoặc nhiều đầu vào x<sub>i</sub>. Các đầu vào đóng vai
+trò như các sợi nhánh thần kinh (dendrites) nhận tính hiệu từ các
+neuron khác.
+* Các giá trị đầu vào x<sub>i</sub> được điều phối tầm ảnh hưởng bởi các trọng số tương ứng w<sub>i</sub> của nó, thể hiện mức độ quan trọng (độ mạnh) của dữ liệu đầu vào đối với quá trình xử lí thông tin (quá trình chuyển đổi dữ liệu từ nút này sang nút
+khác).
+* Tại mỗi nút, chúng ta sẽ biến đổi những dữ liệu đầu vào này bằng
+cách tính tổng các giá trị đầu vào với trọng số liên kết tương ứng trên
+các đầu vào.
+* Giá trị độ lệch (bias).
+Ngoài các trọng số, một thành phần khác được áp dụng cho thông
+tin đầu vào, được gọi là giá trị đầu vào (bias). Nó được thêm vào kết quả của phép nhân trọng số với giá trị đầu vào.
+Bởi vì kết quả của phép nhân luôn là một hàm tuyến tính đi qua gốc
+tọa độ nên việc sử dụng bias giúp mạng neuron có thể dịch chuyển
+hàm tuyến tính này một cách linh hoạt hơn để mô hình khớp với dữ
+liệu được huấn luyện.
+* Hàm kích hoạt (Activation function)
+Là một thành phần rất quan trọng trong mô hình mạng neuron. Nó
+quyết định khi nào một neuron được kích hoạt hay không được kích
+hoạt. Liệu thông tin mà neuron nhận được có liên quan đến thông tin
+được đưa ra hay nên bỏ qua dựa trên kết quả tổng hợp các tín hiệu
+đầu vào mà nó nhận được từ các neuron trước đó.
+Nếu không có hàm kích hoạt thì trọng số liên kết và bias chỉ đơn giản
+như 1 hàm biến đổi tuyến tính. Giải 1 hàm tuyến tính sẽ đơn giản hơn
+nhiều nhưng sẽ khó có thể mô hình hóa và giải được những vấn đề
+phức tạp.
 
 
 
