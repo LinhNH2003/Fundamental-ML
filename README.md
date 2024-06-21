@@ -32,13 +32,29 @@ This project is designed to be completed in the following steps:
 3. **Complete the Tasks**: Open the ```notebooks/EDA.ipynb``` notebook in your Jupyter Notebook environment. The notebook is designed to guide you through various tasks, including:
     
     1. Prerequisite
-    2. Principle Component Analysis
-    3. Image Classification
-    4. Evaluating Classification Performance 
+    3. Principle Component Analysis
+    4. Image Classification
+    5. Evaluating Classification Performance 
 
     Make sure to run all the code cells in the ```EDA.ipynb``` notebook and ensure they produce output before committing and pushing your changes.
 
 5. **Commit and Push Your Changes**: Once you've completed the tasks outlined in the notebook, commit your changes to your local repository and push them to your forked repository on GitHub.
 
+## MINI PROJECT
+### Tổng quan về đồ án
+- Project nhận dạng biểu cảm khuôn mặt được thực hiện trên các hình ảnh khuôn mặt từ bộ dữ liệu
+- Tập dữ liệu được tổng hợp từ internet, được thiết kế để phân loại biểu hiện khuôn mặt. Dữ liệu bao gồm các hình ảnh thang độ xám của khuôn mặt, mỗi hình ảnh có kích thước 48x48 pixel. Các khuôn mặt đã được tự động căn chỉnh để gần như ở giữa và chiếm một khu vực tương tự trong mỗi hình ảnh.
+- Yêu là sử dụng những thuật toán Machine Learning và Deep Learning để phân loại từng khuôn mặt dựa trên cảm xúc được thể hiện, gán nó vào một trong bảy loại cảm xúc (0=Tức giận, 1=Ghê tởm, 2=Sợ hãi, 3=Vui vẻ, 4=Buồn, 5=Bất ngờ, 6=Trung lập)
 
-Feel free to modify and extend the notebook to explore further aspects of the data and experiment with different algorithms. Good luck.
+### 1.Prerequisite
+- Thông tin về dữ liệu:
+````python
+df = pd.read_csv('/content/icml_face_data.csv')
+df.info()
+````
+- Kết quả thu được từ data: tập dữ liệu bao gồm 35,887 dòng và 2 cột: emotion và pixels. Cột emotion chứa các giá trị số nguyên đại diện cho các loại cảm xúc, và cột pixels chứa các chuỗi ký tự đại diện cho các giá trị pixel của hình ảnh.
+- 
+
+
+
+
