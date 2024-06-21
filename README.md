@@ -49,15 +49,30 @@ This project is designed to be completed in the following steps:
 ### 1.Prerequisite
 - Thông tin về dữ liệu:
 - Kết quả thu được từ data: tập dữ liệu bao gồm 35,887 dòng và 2 cột: emotion và pixels. Cột emotion chứa các giá trị số nguyên đại diện cho các loại cảm xúc, và cột pixels chứa các chuỗi ký tự đại diện cho các giá trị pixel của hình ảnh.
+  ![background](./materials/PB_emotion.png)
+- Các nhãn dữ liệu:
+   + Nhãn Angry:
+     ![background](./materials/Angry.png)
+   + Nhãn Disgust:
+     ![background](./materials/Disgust.png)
+   + Nhãn Fear:
+      ![background](./materials/Fear.png)
+   + Nhãn Happy:
+      ![background](./materials/Happy.png)
+   + Nhãn Sad:
+      ![background](./materials/Sad.png)
+   + Nhãn Surprise:
+      ![background](./materials/Surprise.png)
+   + Nhãn Neutral:
+     ![background](./materials/Neutral.png)
 - Thực hiện các xử lí ban đầu:
-  - 1.1 Kiểm tra giá trị thiếu và dữ liệu trùng lặp.
+  **1.1 Kiểm tra giá trị thiếu và dữ liệu trùng lặp.**
     Khi đó ta thấy rằng dữ liệu được cung cấp không có giá trị thiếu và có **1793** giá trị trùng lặp
     => cần drop giá trị trùng lặp
-    
 - **EDA dữ liệu ban đầu:**
-
   - Nhận xét về phân phối nhãn dữ liệu
     ![background](./materials/phanphoidulieu.png)
+    
     1. **Train Labels**: ta nhận thấy sự mất cân bằng rõ rệt:
         - Nhãn "Happy" xuất hiện nhiều nhất (~8000).
         - Nhãn "Disgust" xuất hiện ít nhất (gần 0).
@@ -68,7 +83,7 @@ This project is designed to be completed in the following steps:
         - **Train Labels**: Mất cân bằng giữa các nhãn.
         - **Random Labels**: Phân phối đều đặn.
     => **Kết luận**: Dữ liệu mất cân bằng trong tập huấn luyện bởi vì nhãn "Happy" quá phổ biến có thể gây thiên vị cho mô hình.
-
+### 
 
 
 
