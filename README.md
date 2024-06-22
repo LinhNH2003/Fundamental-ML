@@ -160,26 +160,25 @@ Trong đó:
 
 Quá trình huấn luyện bao gồm các bước sau:
 1. Khởi tạo mô hình với một giá trị không đổi:
-   $F_0(x) = \arg\min_\gamma \sum_{i=1}^{N} L(y_i,\gamma)$
+   $$F_0(x) = \arg\min_\gamma \sum_{i=1}^{N} L(y_i,\gamma)$$
    Trong đó, $L$ là hàm mất mát và $(y_i)$ là nhãn thực tế.
 2. Với mỗi bước $(m = 1)$ đến $M$:\
    a. Tính gradient của hàm mất mát:
    $$g_im = [∂L(y_i, F(x_i)) / ∂F(x_i)]  tại  F(x) = F_{m-1}(x)$$
    b. Huấn luyện cây quyết định $h_m(x)$ để dự đoán gradient $g_{im}$.\
    c. Cập nhật mô hình:\
-      $F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x)$
+      $F_m(x) = F_{m-1}(x) + \nu \cdot h_m(x)$\
 Quá trình này tiếp tục cho đến khi số bước \( M \) được hoàn thành hoặc mô hình đạt đến hiệu suất mong muốn.
-
 Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụng với:
 - Model với dữ liệu gốc:
     - Best parameters found:  **{'learning_rate': 0.25, 'max_features': 48, 'n_estimators': 200}**
-    - Với Accuracy of the best Gradient Boosting model cao nhất là:  0.4098841472356651
+    - Với Accuracy of the best Gradient Boosting model cao nhất là:  **0.4098841472356651**
 - Model với dữ liệu PCA
     - Best parameters found:  **{'learning_rate': 0.1, 'max_features': 24, 'n_estimators': 200}**
-    - Accuracy of the best Gradient Boosting model: 0.37879454465464146
+    - Accuracy of the best Gradient Boosting model: **0.37879454465464146**
 - Model với dữ liệu inverse
     - Best parameters found: **{'learning_rate': 0.25, 'max_features': 48, 'n_estimators': 200}**
-    - Accuracy of the best Gradient Boosting model: 0.39917876521484086
+    - Accuracy of the best Gradient Boosting model: **0.39917876521484086**
 ##### b) Model XGBoost Classifier
 ![background](./materials/xgb.png)
 Đặc điểm chính của XGBoost.
@@ -203,14 +202,14 @@ Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụ
 **Cross Validation:**
 * Hỗ trợ k-fold cross validation tích hợp để đánh giá mô hình và chọn siêu tham số tối ưu.
 - Model với dữ liệu gốc:
-  Best parameters found:  {'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 700}
-  Accuracy of the best XGBoosing model: 0.5050153246029535
+    + Best parameters found:  **{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 700}**
+    + Accuracy of the best XGBoosing model: **0.5050153246029535**
 - Model với dữ liệu PCA
-  Best parameters found:  {'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 700}
-  Accuracy of the best XGBoosing model: 0.4555586514349401
+    + Best parameters found: **{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 700}**
+    + Accuracy of the best XGBoosing model: **0.4555586514349401**
 - Model với dữ liệu inverse
-  Best parameters found:  {'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 700}
-  Accuracy of the best XGBoosing model: 0.5032042351629981
+    + Best parameters found: **{'learning_rate': 0.1, 'max_depth': 5, 'n_estimators': 700}**
+    + Accuracy of the best XGBoosing model: **0.5032042351629981**
 ##### c) Model Logistic Regreesion
 ![background](./materials/LGT.png)
 **Logistic Regression** là một trong những thuật toán quan trọng trong học máy, đặc biệt là trong bài toán phân loại. Thuật toán này được sử dụng để dự đoán xác suất của một biến phụ thuộc nhị phân dựa trên các biến độc lập.
@@ -302,14 +301,14 @@ Sau khi giải quyết được bài toán tối ưu, vector trọng số $w$ v�
 Dự đoán lớp của điểm dữ liệu mới $x$ dựa trên dấu của $f(x)$:
 \[ $\text{class}(x) = \text{sign}(f(x)) $\]
 
-Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụng với:
+Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụng với:\
+Best parameters found:**svm__C=10, svm__gamma=scale**
 - Model với dữ liệu gốc:
-      Best parameters found:svm__C=10, svm__gamma=scale
-      Accuracy: 0.4754806352744497
+    + Accuracy: **0.4754806352744497**
 - Model với dữ liệu PCA
-      Accuracy: 0.4660072443577598
+    + Accuracy: **0.4660072443577598**
 - Model với dữ liệu inverse
-      Accuracy: 0.4831429367511842
+    + Accuracy: **0.4831429367511842**
 ##### e) Model Multi-layer Perceptron classifier
 ![background](./materials/mlp.png)
 Cấu trúc một neuron.
@@ -340,13 +339,13 @@ nhiều nhưng sẽ khó có thể mô hình hóa và giải được những v�
 phức tạp.
 
 Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụng với:
-- Model với dữ liệu gốc:\
-  Best parameters found:  {'alpha': 0.0001, 'hidden_layer_sizes': (1024, 512, 256, 128), 'learning_rate_init': 0.001}.\
-  Test accuracy: 0.4653106714962385
-- Model với dữ liệu PCA:\
-  Test accuracy: 0.43981610476455835
-- Model với dữ liệu inverse:\
-  Test accuracy: 0.4580663137364168
+- Model với dữ liệu gốc:
+    + Best parameters found:  **{'alpha': 0.0001, 'hidden_layer_sizes': (1024, 512, 256, 128), 'learning_rate_init': 0.001}**
+    + Test accuracy: **0.4653106714962385**
+- Model với dữ liệu PCA:
+    + Test accuracy: **0.43981610476455835**
+- Model với dữ liệu inverse:
+    + Test accuracy: **0.4580663137364168**
 
 
 
