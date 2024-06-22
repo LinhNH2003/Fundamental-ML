@@ -351,7 +351,7 @@ Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụ
 ### 🏆**IV.Evaluating Classification Performance**
 - **Compare the performance of the different classification models using various metrics: accuracy, precision, recall, and F1-score.
 Based on the evaluation metrics, explain which model performs best and why. Identify the emotion category where the model makes the most accurate and most errors. (1 point)**
-    - Compare the performance of the different classification models using various metrics: accuracy, precision, recall, and F1-score.\
+    - Compare the performance of the different classification models using various metrics: accuracy, precision, recall, and F1-score.
 
         | Data Type | Gradient Boosting | Logistic Regression | XGBoost  | MLP      | SVM      |
         | --------- | ----------------- | ------------------- | -------- | -------- | -------- |
@@ -360,14 +360,21 @@ Based on the evaluation metrics, explain which model performs best and why. Iden
         | Restored  | 0.385394          | 0.360903            | 0.503204 | 0.458066 | 0.483143 |
 
     
-      ![background](./materials/compare_model.png)
-  Độ chính xác trung bình: Nhìn chung, độ chính xác của các mô hình không quá cao, hầu hết dao động trong khoảng từ 40% đến 50%. Điều này có thể chỉ ra rằng bài toán phân loại biểu cảm khuôn mặt này khá phức tạp và dữ liệu có thể chứa nhiều nhiễu hoặc các đặc trưng không rõ ràng giữa các lớp biểu cảm.
+      ![background](./materials/compare_model.jpg)
+  **Nhận xét:**
+Nhìn chung, độ chính xác của các mô hình không quá cao, hầu hết dao động trong khoảng từ 40% đến 50%. Điều này có thể chỉ ra rằng bài toán phân loại biểu cảm khuôn mặt này khá phức tạp và dữ liệu có thể chứa nhiều nhiễu hoặc các đặc trưng không rõ ràng giữa các lớp biểu cảm.
 
 Trong đó XGBoost là mô hình có hiệu quả cao nhất với độ chính xác (accuracy) cao nhất trên dữ liệu gốc (0.505015) và dữ liệu đã phục hồi (0.503204). Tiếp đó chênh lệch không quá lớn là model SVM với dữ liệu giảm chiều PCA có accuracy là gần 0.49. 
 
-&#8658; Xem xét các metrics khácđể đánh giá và lựa chọn model ổn định và phù hợp.
+&#8658; Xem xét các metrics khác để đánh giá và lựa chọn model ổn định và phù hợp.
     - Based on the evaluation metrics, explain which model performs best and why. Identify the emotion category where the model makes the most accurate and most errors.\
-    ![background](./materials/Final_model.png)
+
+###### **So sánh performances của model XGBoost và model SVM với các metrics:  accuracy, precision, recall, F1-score**
+
+- Các metrics trên model SVM:
+  ![background](./materials/svm_final.jpg)
+- Các metrics trên model XGBoost:
+  ![background](./materials/Final_model.png)
 
 
 
