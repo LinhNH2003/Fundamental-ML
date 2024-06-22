@@ -128,6 +128,7 @@ This project is designed to be completed in the following steps:
 Sau khi chia dữ liệu, các giá trị dữ liệu thô được chuyển đổi thành định dạng phù hợp để sử dụng trong mô hình. Ví dụ, trong trường hợp này, dữ liệu pixel ban đầu được chuyển từ chuỗi thành các mảng số nguyên để mô hình có thể hiểu và xử lý.
 
 Xây dựng các model với 3 dạng dữ liệu được xử lý, gồm:
+- ###### **Dữ liệu gốc**
 - ###### **Dữ liệu giảm chiều bằng PCA:**
 ```python
 from sklearn.decomposition import PCA
@@ -137,7 +138,6 @@ pca = PCA(n_components=104)
 Dữ liệu đã được biến đổi bằng PCA (X_test_pca) được sử dụng để đánh giá hiệu suất của mô hình máy học sau khi đã được huấn luyện trên dữ liệu đã giảm chiều (X_train_pca). Việc này giúp đảm bảo rằng mô hình đang được đánh giá trên các dữ liệu có cùng phân phối với dữ liệu huấn luyện, sau khi đã áp dụng phương pháp giảm chiều dữ liệu PCA.
 
 - ###### **Dữ liệu inverse từ PCA với ảnh được loại bỏ bớt những features không quan trọng:**
-
 Tiếp theo ta  sử dụng hàm inverse để phục hồi dữ liệu từ không gian giảm chiều (thông qua PCA) về không gian ban đầu. Nhằm để đánh giá:
 - Đánh giá lại chất lượng của việc giảm chiều dữ liệu.
 - Đối chiếu và so sánh các điểm dữ liệu giữa không gian ban đầu và không gian đã giảm chiều.
@@ -183,7 +183,6 @@ Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụ
 ##### b) Model XGBoost Classifier
 ![background](./materials/xgb.png)
 Đặc điểm chính của XGBoost.
-
 **Tối ưu hóa tốc độ và hiệu suất:**
 * Tree Pruning: Sử dụng chiến lược cắt tỉa cây (pruning) để tránh overfitting, với kỹ thuật "maximum depth".
 * Parallel Processing: Hỗ trợ xử lý song song để tăng tốc độ huấn luyện.
@@ -293,7 +292,6 @@ Bằng cách thay thế $w$ và $b$ vào $L$, ta có bài toán tối ưu kép:
 \[ $\alpha_i \geq 0, \; i = 1, \ldots, n$ \]
 
 - **Kernel Trick (Nếu dữ liệu không tuyến tính)**
-
 Nếu dữ liệu không tuyến tính, ta có thể sử dụng kernel trick để chuyển dữ liệu vào không gian đặc trưng cao hơn:
 \[$ K(x_i, x_j) = \phi(x_i) \cdot \phi(x_j) $\]
 trong đó $\phi$ là hàm ánh xạ vào không gian đặc trưng.
@@ -306,12 +304,12 @@ Dự đoán lớp của điểm dữ liệu mới $x$ dựa trên dấu của $f
 
 Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụng với:
 - Model với dữ liệu gốc:
-  Best parameters found:svm__C=10, svm__gamma=scale
-  Accuracy: 0.4754806352744497
+      Best parameters found:svm__C=10, svm__gamma=scale
+      Accuracy: 0.4754806352744497
 - Model với dữ liệu PCA
-  Accuracy: 0.4660072443577598
+      Accuracy: 0.4660072443577598
 - Model với dữ liệu inverse
-  Accuracy: 0.4831429367511842
+      Accuracy: 0.4831429367511842
 ##### e) Model Multi-layer Perceptron classifier
 ![background](./materials/mlp.png)
 Cấu trúc một neuron.
