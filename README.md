@@ -348,9 +348,14 @@ Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụ
     + Test accuracy: **0.43981610476455835**
 - Model với dữ liệu inverse:
     + Test accuracy: **0.4580663137364168**
-
-
-
-
+### **IV.Evaluating Classification Performance**
+- **Compare the performance of the different classification models using various metrics: accuracy, precision, recall, and F1-score.
+Based on the evaluation metrics, explain which model performs best and why. Identify the emotion category where the model makes the most accurate and most errors. (1 point)**
+    - Commpa
+| Data Type | Gradient Boosting | Logistic Regression | XGBoost  | MLP      | SVM      |
+| --------- | ----------------- | ------------------- | -------- | -------- | -------- |
+| Original  | 0.409884          | 0.312656            | 0.505015 | 0.465311 | 0.475481 |
+| PCA       | 0.378795          | 0.363690            | 0.455559 | 0.439816 | 0.466007 |
+| Restored  | 0.385394          | 0.360903            | 0.503204 | 0.458066 | 0.483143 |
 
 
