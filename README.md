@@ -352,11 +352,13 @@ Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụ
 - **Compare the performance of the different classification models using various metrics: accuracy, precision, recall, and F1-score.
 Based on the evaluation metrics, explain which model performs best and why. Identify the emotion category where the model makes the most accurate and most errors. (1 point)**
     - Compare the performance of the different classification models using various metrics: accuracy, precision, recall, and F1-score.\
-| Data Type | Gradient Boosting | Logistic Regression | XGBoost  | MLP      | SVM      |
-| --------- | ----------------- | ------------------- | -------- | -------- | -------- |
-| Original  | 0.409884          | 0.312656            | 0.505015 | 0.465311 | 0.475481 |
-| PCA       | 0.378795          | 0.363690            | 0.455559 | 0.439816 | 0.466007 |
-| Restored  | 0.385394          | 0.360903            | 0.503204 | 0.458066 | 0.483143 |
+
+        | Data Type | Gradient Boosting | Logistic Regression | XGBoost  | MLP      | SVM      |
+        | --------- | ----------------- | ------------------- | -------- | -------- | -------- |
+        | Original  | 0.409884          | 0.312656            | 0.505015 | 0.465311 | 0.475481 |
+        | PCA       | 0.378795          | 0.363690            | 0.455559 | 0.439816 | 0.466007 |
+        | Restored  | 0.385394          | 0.360903            | 0.503204 | 0.458066 | 0.483143 |
+      
     - Based on the evaluation metrics, explain which model performs best and why. Identify the emotion category where the model makes the most accurate and most errors.\
-    ![background](./materials/Final_project.png)
+    ![background](./materials/Final_model.png)
 
