@@ -418,8 +418,12 @@ Trong đó XGBoost là mô hình có hiệu quả cao nhất với độ chính 
 
 Nhận thấy, mô hình huấn luyện có độ chính xác cao nhất chỉ khoảng 50%, kết quả này cho thấy các mô hình phân loại biểu cảm khuôn mặt này chưa đạt hiệu suất mong đợi. Một độ chính xác khoảng 50% gần như tương đương với việc đoán ngẫu nhiên trong một số trường hợp.
 
-Nhưng khi đánh giá sâu hơn vào mô hình, ta thầy khi mô hình dự đoán là lable 1(Disgust) thì sẽ có 94% là dự đoán đúng. Ngược lại khi mô hình dự đoán lable 4(sad) thì chỉ có 38% là đúng. &#8658; Điều này cho thấy, mô hình có hoạt động hiệu quả không đồng đều ở các biểu cảm trong bộ dữ liệu.--
+Nhưng khi đánh giá sâu hơn vào mô hình, ta thầy khi mô hình dự đoán là lable 1(Disgust) thì sẽ có 94% là dự đoán đúng. Ngược lại khi mô hình dự đoán lable 4(sad) thì chỉ có 38% là đúng. &#8658; Điều này cho thấy, mô hình có hoạt động hiệu quả không đồng đều ở các biểu cảm trong bộ dữ liệu.
 
 - **Về mặt áp dụng:**
+Với dự án nhóm thực hiện áp dụng thuật toán giảm chiều PCA giúp hỗ trợ xây dựng các mô hình machine learning classification như XGBoost, SVM, MLP, Linear Regressor, Gradient Boosting để huấn luyện dữ liệu. Kết quả thu được 2 model có hiệu quả ổn trong các model là XGBoost và SVM. Điều này có thể là do đối với dữ liệu này:
+ - XGBoost thường hoạt động tốt vì nó là một thuật toán boosting mạnh mẽ. Boosting kết hợp nhiều mô hình yếu (weak learners) để tạo ra một mô hình mạnh hơn. Quá trình học của XGBoost tập trung vào việc tối ưu hóa các lỗi của các mô hình yếu trước đó, giúp cải thiện hiệu suất tổng thể.
+ - SVM hoạt động tốt với không gian đặc trưng cao (high-dimensional space) và có thể xử lý các trường hợp mà số lượng đặc trưng lớn hơn số lượng mẫu.
+SVM sử dụng hàm kernel để biến đổi không gian đặc trưng, giúp giải quyết các vấn đề phân loại phi tuyến tính.
 
-Tùy thuộc vào yêu cầu cụ thể của bài toán phân loại biểu cảm khuôn mặt, bạn có thể chọn mô hình phù hợp. Nếu việc bỏ sót ít biểu cảm thực sự là quan trọng hơn, mô hình SVM có thể là lựa chọn tốt hơn. Ngược lại, nếu việc giảm thiểu số lượng dự đoán sai biểu cảm là ưu tiên cao hơn, mô hình XGBoost sẽ là lựa chọn hợp lý.
+Tuy nhiên, tùy thuộc vào yêu cầu cụ thể của bài toán phân loại biểu cảm khuôn mặt, bạn có thể chọn mô hình phù hợp. Nếu việc bỏ sót ít biểu cảm thực sự là quan trọng hơn, mô hình SVM có thể là lựa chọn tốt hơn. Ngược lại, nếu việc giảm thiểu số lượng dự đoán sai biểu cảm là ưu tiên cao hơn, mô hình XGBoost sẽ là lựa chọn hợp lý.
