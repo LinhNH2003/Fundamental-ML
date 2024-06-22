@@ -128,17 +128,6 @@ This project is designed to be completed in the following steps:
 Sau khi chia dữ liệu, các giá trị dữ liệu thô được chuyển đổi thành định dạng phù hợp để sử dụng trong mô hình. Ví dụ, trong trường hợp này, dữ liệu pixel ban đầu được chuyển từ chuỗi thành các mảng số nguyên để mô hình có thể hiểu và xử lý.
 
 Xây dựng các model với 3 dạng dữ liệu được xử lý, gồm:
-- ###### **Dữ liệu train, test được lấy từ dữ liệu gốc:**
-```python
-# Tiền xử lý dữ liệu
-X = df['pixels'].apply(lambda x: [int(pixel) for pixel in x.split()])
-y = df['emotion']
-# Chia dữ liệu thành tập huấn luyện và tập kiểm tra
-X_train_Original, X_test_Original, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-# Chuyển đổi danh sách các danh sách thành mảng numpy
-X_train_Original = np.array([np.array(x) for x in X_train_Original])
-X_test_Original = np.array([np.array(x) for x in X_test_Original])
-```
 - ###### **Dữ liệu giảm chiều bằng PCA:**
 ```python
 from sklearn.decomposition import PCA
