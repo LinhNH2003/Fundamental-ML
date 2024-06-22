@@ -100,7 +100,9 @@ This project is designed to be completed in the following steps:
 - Hình ảnh khi trực quan dữ liệu về 2 chiều:
 ![background](./materials/pca.png)
 **Nhận xét**: Từ hình ảnh trên có thể thấy chúng ta không thể trực quan dữ liệu trên không gian hai chiều(n_componets = 2) vì không mang lại ý nghĩa nào về mặt trực quan đối với bộ dữ liệu.
-
+- Hình ảnh khi trực quan dữ liệu về 2 chiều với 2 label:
+![background](./materials/2D-2.png)
+=>**Phân phối dữ liệu:** Trong tất cả các biểu đồ, các điểm dữ liệu của hai nhóm (màu xanh và màu cam) đều phân bố khá đều nhau, cho thấy rằng các thành phần chính không thể hoàn toàn tách biệt các nhóm này một cách rõ ràng. Điều này có thể ngụ ý rằng các nhóm dữ liệu này có sự chồng chéo lớn trong không gian đặc trưng PCA
 #### **Câu hỏi 2:How to determine the optimal number of principal components using pca.explained_variance_? Explain your selection process.**
 - Để xác định số lượng thành phần chính (principal components - PCs) tối ưu, ta cần xem xét tỷ lệ phương sai được giải thích (explained_variance_ratio_) bởi các PCs. Mục tiêu là chọn số lượng PCs sao cho giữ lại được phần lớn phương sai trong dữ liệu ban đầu mà không cần sử dụng quá nhiều PCs, giúp giảm chiều dữ liệu và cải thiện hiệu quả tính toán.
 - Các bước thực hiện:
