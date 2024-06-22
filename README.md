@@ -362,3 +362,42 @@ Based on the evaluation metrics, explain which model performs best and why. Iden
     - Based on the evaluation metrics, explain which model performs best and why. Identify the emotion category where the model makes the most accurate and most errors.\
     ![background](./materials/Final_model.png)
 
+
+
+
+**Nhận xét**:
+- **Accuracy**
+  * Mô hình SVM: 0.4914
+  * Mô hình XGBoost: 0.5050 
+
+&#8594; Mô hình XGBoost có độ chính xác cao hơn mô hình SVM, nghĩa là tỷ lệ dự đoán đúng của mô hình XGBoost trên tổng số các dự đoán cao hơn.
+- **Precision**
+  * Mô hình SVM: 0.5034
+  * Mô hình XGBoost: 0.5766
+
+&#8594; Mô hình XGBoost có độ chính xác tiên đoán cao hơn mô hình SVM. Điều này có nghĩa là trong số các trường hợp mà mô hình XGBoost dự đoán là biểu cảm cụ thể nào đó, tỷ lệ các dự đoán đúng cao hơn so với mô hình SVM. Mô hình XGBoost có ít dự đoán sai biểu cảm (False Positives) hơn.
+- **Recall**
+  * Mô hình SVM: 0.4916
+  * Mô hình XGBoost: 0.4587
+
+&#8594; Mô hình SVM có độ nhạy cao hơn mô hình XGBoost. Điều này có nghĩa là mô hình SVM có khả năng phát hiện các biểu cảm thực sự cao hơn. Mô hình SVM bỏ sót ít biểu cảm thực sự hơn (False Negatives).
+- **F1-score**
+  * Mô hình SVM: 0.4960
+  * Mô hình XGBoost: 0.4862
+
+&#8594; Mô hình SVM có F1-score cao hơn mô hình XGBoost. Điều này cho thấy mô hình SVM có sự cân bằng tốt hơn giữa độ chính xác tiên đoán (Precision) và độ nhạy (Recall). Mô hình XGBoost tuy có Precision cao nhưng bị đánh đổi bởi Recall thấp, dẫn đến F1-score thấp hơn.
+
+**Kết luận**
+- Mô hình XGBoost có Accuracy và Precision cao hơn: Điều này thể hiện rằng mô hình XGBoost có khả năng đưa ra nhiều dự đoán đúng hơn và ít dự đoán sai biểu cảm hơn. Tuy nhiên, do độ nhạy thấp hơn, mô hình XGBoost có thể bỏ sót nhiều biểu cảm thực sự hơn.
+- Mô hình SVM có Recall và F1-score cao hơn: Điều này cho thấy mô hình SVM có khả năng phát hiện nhiều biểu cảm thực sự hơn và có sự cân bằng tốt hơn giữa Precision và Recall.
+
+&#8658; Tùy thuộc vào yêu cầu cụ thể của bài toán phân loại biểu cảm khuôn mặt, bạn có thể chọn mô hình phù hợp:
+- Mô hình XGBoost: Sử dụng khi mục tiêu chính là giảm thiểu số lượng dự đoán sai biểu cảm và tăng số lượng dự đoán đúng tổng thể, mặc dù có thể bỏ sót một số biểu cảm thực sự.
+- Mô hình SVM: Sử dụng khi mục tiêu chính là phát hiện nhiều biểu cảm thực sự nhất có thể và duy trì sự cân bằng tốt giữa Precision và Recall.
+
+**Về mặt tổng thể:**
+
+Nhận thấy, mô hình huấn luyện có độ chính xác cao nhất chỉ khoảng 50%, kết quả này cho thấy các mô hình phân loại biểu cảm khuôn mặt này chưa đạt hiệu suất mong đợi. Một độ chính xác khoảng 50% gần như tương đương với việc đoán ngẫu nhiên trong một số trường hợp.
+
+Nhưng khi đánh giá sâu hơn vào mô hình, ta thầy khi mô hình dự đoán là lable 1(Disgust) thì sẽ có 94% là dự đoán đúng. Ngược lại khi mô hình dự đoán lable 4(sad) thì chỉ có 38% là đúng. &#8658; Điều này cho thấy, mô hình có hoạt động hiệu quả không đồng đều ở các biểu cảm trong bộ dữ liệu.
+
