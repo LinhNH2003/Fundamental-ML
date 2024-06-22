@@ -348,7 +348,7 @@ Thực hiện Grid search để tìm ra hyperparameter tốt nhất và áp dụ
     + Test accuracy: **0.43981610476455835**
 - Model với dữ liệu inverse:
     + Test accuracy: **0.4580663137364168**
-### **IV.Evaluating Classification Performance**
+### 🏆**IV.Evaluating Classification Performance**
 - **Compare the performance of the different classification models using various metrics: accuracy, precision, recall, and F1-score.
 Based on the evaluation metrics, explain which model performs best and why. Identify the emotion category where the model makes the most accurate and most errors. (1 point)**
     - Compare the performance of the different classification models using various metrics: accuracy, precision, recall, and F1-score.\
