@@ -1,9 +1,7 @@
 # Mini-Project for Fundamentals of Machine Learning Course
 ![background](./materials/ai_wp.jpg)
-This repository contains the code and data for a mini-project on facial expression recognition using machine learning algorithms.
-
-Link my google colab project: https://colab.research.google.com/drive/1pmBHcH3jPEj5usZMMdnUEDLbboXSXCfc?usp=sharing&fbclid=IwZXh0bgNhZW0CMTAAAR1x6-99OSWioPnHBIGsAoAjRddY5wxbUTtXPJkc78lLKiMN1GvOTxhRIpg_aem_Ab23ou4hmC0AO6K3dAXXVh456V8D4nzG8gOsOze9KE9tCsvMt24Bl-eP3x_JCIPco_1121H-PzUe7UKfFg0hqwLf#scrollTo=lXLosd5kHahA 
-
+This repository contains the code and data for a mini-project on facial expression recognition using machine learning algorithms\
+[My google colab Final Project](https://colab.research.google.com/drive/1pmBHcH3jPEj5usZMMdnUEDLbboXSXCfc?usp=sharing&fbclid=IwZXh0bgNhZW0CMTAAAR1x6-99OSWioPnHBIGsAoAjRddY5wxbUTtXPJkc78lLKiMN1GvOTxhRIpg_aem_Ab23ou4hmC0AO6K3dAXXVh456V8D4nzG8gOsOze9KE9tCsvMt24Bl-eP3x_JCIPco_1121H-PzUe7UKfFg0hqwLf#scrollTo=lXLosd5kHahA)
 ## 📑 Project Policy
 - Team: group should consist of 3-4 students.
 
