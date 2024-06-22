@@ -358,7 +358,14 @@ Based on the evaluation metrics, explain which model performs best and why. Iden
         | Original  | 0.409884          | 0.312656            | 0.505015 | 0.465311 | 0.475481 |
         | PCA       | 0.378795          | 0.363690            | 0.455559 | 0.439816 | 0.466007 |
         | Restored  | 0.385394          | 0.360903            | 0.503204 | 0.458066 | 0.483143 |
-      
+
+    
+      ![background](./materials/compare_model.png)
+  Độ chính xác trung bình: Nhìn chung, độ chính xác của các mô hình không quá cao, hầu hết dao động trong khoảng từ 40% đến 50%. Điều này có thể chỉ ra rằng bài toán phân loại biểu cảm khuôn mặt này khá phức tạp và dữ liệu có thể chứa nhiều nhiễu hoặc các đặc trưng không rõ ràng giữa các lớp biểu cảm.
+
+Trong đó XGBoost là mô hình có hiệu quả cao nhất với độ chính xác (accuracy) cao nhất trên dữ liệu gốc (0.505015) và dữ liệu đã phục hồi (0.503204). Tiếp đó chênh lệch không quá lớn là model SVM với dữ liệu giảm chiều PCA có accuracy là gần 0.49. 
+
+&#8658; Xem xét các metrics khácđể đánh giá và lựa chọn model ổn định và phù hợp.
     - Based on the evaluation metrics, explain which model performs best and why. Identify the emotion category where the model makes the most accurate and most errors.\
     ![background](./materials/Final_model.png)
 
